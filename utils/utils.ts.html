@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.82% </span>
+                <span class="strong">56.09% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/41</span>
+                <span class='fraction'>23/41</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/10</span>
+                <span class='fraction'>4/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.55% </span>
+                <span class="strong">61.11% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/36</span>
+                <span class='fraction'>22/36</span>
             </div>
         
             
@@ -195,26 +195,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -281,28 +281,28 @@ export default class UtilClass {
         });
     });
 */
-        cron.schedule('*/1 * * * *', <span class="fstat-no" title="function not covered" >async () =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
+        cron.schedule('*/1 * * * *', async () =&gt; {
             //mark the tickets with no activity as available
-            let ticketsToUnselect: ITicket[] = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >            try {</span>
-<span class="cstat-no" title="statement not covered" >                console.log('executing selectedTickets cleanup: ' + new Date());</span>
-                let tickets = <span class="cstat-no" title="statement not covered" >await Ticket.find({ status: 'selected' });</span>
+            let ticketsToUnselect: ITicket[] = [];
+            try {
+                console.log('executing selectedTickets cleanup: ' + new Date());
+                let tickets = await Ticket.find({ status: 'selected' });
                 //filter tickets, that haven't been modified for 10 minutes or longer
-<span class="cstat-no" title="statement not covered" >                ticketsToUnselect = tickets.filter(<span class="fstat-no" title="function not covered" >(t</span>icket) =&gt; {</span>
+                ticketsToUnselect = tickets.filter(<span class="fstat-no" title="function not covered" >(t</span>icket) =&gt; {
                     let ticketDate = <span class="cstat-no" title="statement not covered" >new Date(ticket.updatedAt);</span>
 <span class="cstat-no" title="statement not covered" >                    return Math.abs(ticketDate.getTime() - new Date().getTime()) &gt;= 1000 * 60 * 10;</span>
                 });
-<span class="cstat-no" title="statement not covered" >                for (let ticket of ticketsToUnselect) {</span>
+                for (let ticket of ticketsToUnselect) {
 <span class="cstat-no" title="statement not covered" >                    await Ticket.findOneAndUpdate({ _id: ticket._id }, { status: 'available' }, { new: true });</span>
                 }
-<span class="cstat-no" title="statement not covered" >                console.log(`unselected ${ticketsToUnselect.length} tickets`);</span>
+                console.log(`unselected ${ticketsToUnselect.length} tickets`);
             } catch (err) { <span class="cstat-no" title="statement not covered" >console.error(err); </span>}
 &nbsp;
             //remove all tickets from carts with no acitivity (now marked as available)
-<span class="cstat-no" title="statement not covered" >            try {</span>
-                let ticketsToUnselectIds = <span class="cstat-no" title="statement not covered" >ticketsToUnselect.map(<span class="fstat-no" title="function not covered" >ticket </span>=&gt; <span class="cstat-no" title="statement not covered" >ticket._id)</span>;</span>
-                let cartsToFilter = <span class="cstat-no" title="statement not covered" >await Cart.find({ tickets: { $in: ticketsToUnselectIds } }).populate('tickets');</span>
-<span class="cstat-no" title="statement not covered" >                for (let cart of cartsToFilter) {</span>
+            try {
+                let ticketsToUnselectIds = ticketsToUnselect.map(<span class="fstat-no" title="function not covered" >ticket </span>=&gt; <span class="cstat-no" title="statement not covered" >ticket._id)</span>;
+                let cartsToFilter = await Cart.find({ tickets: { $in: ticketsToUnselectIds } }).populate('tickets');
+                for (let cart of cartsToFilter) {
                     //@ts-ignore
                     let newTickets = <span class="cstat-no" title="statement not covered" >cart.tickets.filter(<span class="fstat-no" title="function not covered" >ticket </span>=&gt; <span class="cstat-no" title="statement not covered" >ticket.status == 'selected')</span>;</span>
                     //@ts-ignore
@@ -328,7 +328,7 @@ export default class UtilClass {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Sep 26 2021 16:52:37 GMT+0000 (Coordinated Universal Time)
+                at Sun Sep 26 2021 16:57:30 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
