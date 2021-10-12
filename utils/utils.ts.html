@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">45.83% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>45/72</span>
+                <span class='fraction'>33/72</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">46.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>9/15</span>
+                <span class='fraction'>7/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">65.67% </span>
+                <span class="strong">49.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/67</span>
+                <span class='fraction'>33/67</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -403,26 +403,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -599,28 +599,28 @@ export default class UtilClass {
     }
 &nbsp;
     static registerBackGroundJobs() {
-        cron.schedule('*/1 * * * *', async () =&gt; {
+        cron.schedule('*/1 * * * *', <span class="fstat-no" title="function not covered" >async () =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
             //mark the tickets with no activity as available
-            let ticketsToUnselect: ITicket[] = [];
-            try {
-                console.log('executing selectedTickets cleanup: ' + new Date());
-                let tickets = await Ticket.find({ status: 'selected' });
+            let ticketsToUnselect: ITicket[] = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >            try {</span>
+<span class="cstat-no" title="statement not covered" >                console.log('executing selectedTickets cleanup: ' + new Date());</span>
+                let tickets = <span class="cstat-no" title="statement not covered" >await Ticket.find({ status: 'selected' });</span>
                 //filter tickets, that haven't been modified for 10 minutes or longer
-                ticketsToUnselect = tickets.filter(<span class="fstat-no" title="function not covered" >(t</span>icket) =&gt; {
+<span class="cstat-no" title="statement not covered" >                ticketsToUnselect = tickets.filter(<span class="fstat-no" title="function not covered" >(t</span>icket) =&gt; {</span>
                     let ticketDate = <span class="cstat-no" title="statement not covered" >new Date(ticket.updatedAt);</span>
 <span class="cstat-no" title="statement not covered" >                    return Math.abs(ticketDate.getTime() - new Date().getTime()) &gt;= 1000 * 60 * 10;</span>
                 });
-                for (let ticket of ticketsToUnselect) {
+<span class="cstat-no" title="statement not covered" >                for (let ticket of ticketsToUnselect) {</span>
 <span class="cstat-no" title="statement not covered" >                    await Ticket.findOneAndUpdate({ _id: ticket._id }, { status: 'available' }, { new: true });</span>
                 }
-                console.log(`unselected ${ticketsToUnselect.length} tickets`);
+<span class="cstat-no" title="statement not covered" >                console.log(`unselected ${ticketsToUnselect.length} tickets`);</span>
             } catch (err) { <span class="cstat-no" title="statement not covered" >console.error(err); </span>}
 &nbsp;
             //remove all tickets from carts with no acitivity (now marked as available)
-            try {
-                let ticketsToUnselectIds = ticketsToUnselect.map(<span class="fstat-no" title="function not covered" >ticket </span>=&gt; <span class="cstat-no" title="statement not covered" >ticket._id)</span>;
-                let cartsToFilter = await Cart.find({ tickets: { $in: ticketsToUnselectIds } }).populate('tickets');
-                for (let cart of cartsToFilter) {
+<span class="cstat-no" title="statement not covered" >            try {</span>
+                let ticketsToUnselectIds = <span class="cstat-no" title="statement not covered" >ticketsToUnselect.map(<span class="fstat-no" title="function not covered" >ticket </span>=&gt; <span class="cstat-no" title="statement not covered" >ticket._id)</span>;</span>
+                let cartsToFilter = <span class="cstat-no" title="statement not covered" >await Cart.find({ tickets: { $in: ticketsToUnselectIds } }).populate('tickets');</span>
+<span class="cstat-no" title="statement not covered" >                for (let cart of cartsToFilter) {</span>
                     //@ts-ignore
                     let newTickets = <span class="cstat-no" title="statement not covered" >cart.tickets.filter(<span class="fstat-no" title="function not covered" >ticket </span>=&gt; <span class="cstat-no" title="statement not covered" >ticket.status == 'selected')</span>;</span>
                     //@ts-ignore
@@ -658,7 +658,7 @@ export default class UtilClass {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Oct 12 2021 15:06:05 GMT+0000 (Coordinated Universal Time)
+                at Tue Oct 12 2021 16:21:53 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
