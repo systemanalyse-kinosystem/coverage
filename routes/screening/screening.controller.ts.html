@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.91% </span>
+                <span class="strong">84.09% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>37/57</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">30.76% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>8/26</span>
+                <span class='fraction'>37/44</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>3/6</span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>8/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.91% </span>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>3/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">92.1% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>35/48</span>
+                <span class='fraction'>35/38</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -264,13 +264,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -282,11 +275,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -390,15 +390,15 @@ export default class screeningController {
         } catch (e) { <span class="cstat-no" title="statement not covered" >res.status(500).json({ err: 'An Error occured' }); </span>}
     };
 &nbsp;
+    /* DEACTIVATED FOR MVP
+    static createScreening(req: Request, res: Response) {
+        Screening.create(req.body, (err: CallbackError | null, screening: IScreening | null) =&gt; {
+            if (err || !screening) { return res.status(400).json({ err: err ? err : "Not found" }); }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    static </span>createScreening(req: Request, res: Response) {
-<span class="cstat-no" title="statement not covered" >        Screening.create(req.body, <span class="fstat-no" title="function not covered" >(e</span>rr: CallbackError | null, screening: IScreening | null) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            if (err || !screening) { <span class="cstat-no" title="statement not covered" >return res.status(400).json({ err: err ? err : "Not found" }); </span>}</span>
-&nbsp;
-            let ticketBodies: any = <span class="cstat-no" title="statement not covered" >[];</span>
-<span class="cstat-no" title="statement not covered" >            for (let i = <span class="cstat-no" title="statement not covered" >1;</span> i &lt; screening.hall.rows + 1; i++) {</span>
-<span class="cstat-no" title="statement not covered" >                for (let j = <span class="cstat-no" title="statement not covered" >1;</span> j &lt; screening.hall.seatsPerRow + 1; j++) {</span>
-<span class="cstat-no" title="statement not covered" >                    ticketBodies.push({</span>
+            let ticketBodies: any = [];
+            for (let i = 1; i &lt; screening.hall.rows + 1; i++) {
+                for (let j = 1; j &lt; screening.hall.seatsPerRow + 1; j++) {
+                    ticketBodies.push({
                         screening: screening._id,
                         status: 'available',
                         seat: {
@@ -410,16 +410,16 @@ export default class screeningController {
                 }
             }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            Ticket.insertMany(ticketBodies, {}, <span class="fstat-no" title="function not covered" >(e</span>rr: CallbackError, result: any) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                if (err) {</span>
-<span class="cstat-no" title="statement not covered" >                    return res.status(500).json({ err: "An Error occurred (Seatcreation)" });</span>
+            Ticket.insertMany(ticketBodies, {}, (err: CallbackError, result: any) =&gt; {
+                if (err) {
+                    return res.status(500).json({ err: "An Error occurred (Seatcreation)" });
                 }
-<span class="cstat-no" title="statement not covered" >                res.status(201).json(screening);</span>
+                res.status(201).json(screening);
             });
 &nbsp;
         });
     }
-    /* DEACTIVATED FOR MVP
+&nbsp;
     static deleteScreeningById(req: Request, res: Response) {
         Screening.findOneAndDelete({
         }, {}, (err: CallbackError | null, screening: IScreening | null) =&gt; {
@@ -448,7 +448,7 @@ export default class screeningController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Oct 12 2021 16:24:21 GMT+0000 (Coordinated Universal Time)
+                at Tue Oct 12 2021 16:49:28 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
