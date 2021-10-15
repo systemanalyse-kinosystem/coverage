@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.29% </span>
+                <span class="strong">79.2% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>71/101</span>
+                <span class='fraction'>80/101</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.92% </span>
+                <span class="strong">88.46% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>20/26</span>
+                <span class='fraction'>23/26</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74.44% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>67/90</span>
+                <span class='fraction'>75/90</span>
             </div>
         
             
@@ -683,8 +683,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -706,12 +706,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -802,7 +802,7 @@ export default class UtilClass {
             });
 &nbsp;
             let ticketsWithFormattedSeats = ticketsWithPrice.map((ticket: any) =&gt; {
-                ticket.seat.formatted = `${String.fromCharCode(97 + ticket.seat.rowNumber)}${ticket.seat.columnNumber}`;
+                ticket.seat.formatted = `${String.fromCharCode(65 + ticket.seat.rowNumber)}${ticket.seat.colNumber}`;
                 return ticket;
             });
 &nbsp;
@@ -878,7 +878,7 @@ export default class UtilClass {
             });
 &nbsp;
             let ticketsWithFormattedSeats = ticketsWithPrice.map((ticket: any) =&gt; {
-                ticket.seat.formatted = `${String.fromCharCode(97 + ticket.seat.rowNumber)}${ticket.seat.columnNumber}`;
+                ticket.seat.formatted = `${String.fromCharCode(65 + ticket.seat.rowNumber)}${ticket.seat.columnNumber}`;
                 return ticket;
             });
             
@@ -953,7 +953,7 @@ export default class UtilClass {
             });
 &nbsp;
             let ticketsWithFormattedSeats = ticketsWithPrice.map((ticket: any) =&gt; {
-                ticket.seat.formatted = `${String.fromCharCode(97 + ticket.seat.rowNumber)}${ticket.seat.columnNumber}`;
+                ticket.seat.formatted = `${String.fromCharCode(65 + ticket.seat.rowNumber)}${ticket.seat.columnNumber}`;
                 return ticket;
             });
 &nbsp;
@@ -1017,9 +1017,9 @@ export default class UtilClass {
                 console.log('executing selectedTickets cleanup: ' + new Date());
                 let tickets = await Ticket.find({ status: 'selected' });
                 //filter tickets, that haven't been modified for 10 minutes or longer
-                ticketsToUnselect = tickets.filter(<span class="fstat-no" title="function not covered" >(t</span>icket) =&gt; {
-                    let ticketDate = <span class="cstat-no" title="statement not covered" >new Date(ticket.updatedAt);</span>
-<span class="cstat-no" title="statement not covered" >                    return Math.abs(ticketDate.getTime() - new Date().getTime()) &gt;= 1000 * 60 * 10;</span>
+                ticketsToUnselect = tickets.filter((ticket) =&gt; {
+                    let ticketDate = new Date(ticket.updatedAt);
+                    return Math.abs(ticketDate.getTime() - new Date().getTime()) &gt;= 1000 * 60 * 10;
                 });
                 for (let ticket of ticketsToUnselect) {
 <span class="cstat-no" title="statement not covered" >                    await Ticket.findOneAndUpdate({ _id: ticket._id }, { status: 'available' }, { new: true });</span>
@@ -1040,13 +1040,13 @@ export default class UtilClass {
             } catch (err) { <span class="cstat-no" title="statement not covered" >console.error(err); </span>}
         });
 &nbsp;
-        cron.schedule('*/15 * * * *', <span class="fstat-no" title="function not covered" >async () =</span>&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" > {</span></span>
-<span class="cstat-no" title="statement not covered" >            try {</span>
-                let cutOffTime = <span class="cstat-no" title="statement not covered" >new Date((new Date).getTime() - 1000 * 60 * 60 * 24 * 10);</span>
-                let cartsToDelete = <span class="cstat-no" title="statement not covered" >await Cart.find({ updatedAt: { $lte: cutOffTime } });</span>
-                let cartsToDeleteIds = <span class="cstat-no" title="statement not covered" >cartsToDelete.map(<span class="fstat-no" title="function not covered" >cart </span>=&gt; <span class="cstat-no" title="statement not covered" >cart._id)</span>;</span>
-<span class="cstat-no" title="statement not covered" >                await Cart.deleteMany({ _id: { $in: cartsToDeleteIds } });</span>
-<span class="cstat-no" title="statement not covered" >                console.log(`deleted ${cartsToDelete.length} carts during cleanup`)</span>
+        cron.schedule('*/15 * * * *', async () =&gt; {
+            try {
+                let cutOffTime = new Date((new Date).getTime() - 1000 * 60 * 60 * 24 * 10);
+                let cartsToDelete = await Cart.find({ updatedAt: { $lte: cutOffTime } });
+                let cartsToDeleteIds = cartsToDelete.map(<span class="fstat-no" title="function not covered" >cart </span>=&gt; <span class="cstat-no" title="statement not covered" >cart._id)</span>;
+                await Cart.deleteMany({ _id: { $in: cartsToDeleteIds } });
+                console.log(`deleted ${cartsToDelete.length} carts during cleanup`)
             } catch (err) { <span class="cstat-no" title="statement not covered" >console.error(err); </span>}
         });
 &nbsp;
@@ -1069,7 +1069,7 @@ export default class UtilClass {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Oct 15 2021 07:23:03 GMT+0000 (Coordinated Universal Time)
+                at Fri Oct 15 2021 07:30:32 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../prettify.js"></script>
