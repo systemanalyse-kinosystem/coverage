@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.41% </span>
+                <span class="strong">71.83% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>42/58</span>
+                <span class='fraction'>51/71</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56% </span>
+                <span class="strong">58.82% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/25</span>
+                <span class='fraction'>20/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84% </span>
+                <span class="strong">83.6% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>42/50</span>
+                <span class='fraction'>51/61</span>
             </div>
         
             
@@ -157,7 +157,31 @@
 <a name='L98'></a><a href='#L98'>98</a>
 <a name='L99'></a><a href='#L99'>99</a>
 <a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,6 +263,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -253,6 +278,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -339,6 +387,7 @@ export default class cartController {
 &nbsp;
     static async checkOutCartReserveWithLogin(req: Request, res: Response) {
         try {
+&nbsp;
             let cart = await Cart.findById(req.params.id);
             <span class="missing-if-branch" title="if path not taken" >I</span>if (!cart) { <span class="cstat-no" title="statement not covered" >return res.status(400).json({ err: "Cart not found" }); </span>}
 &nbsp;
@@ -354,7 +403,30 @@ export default class cartController {
 &nbsp;
             utils.sendReservationEmail(user.email, cart.tickets);
             
+            
             res.json(updatedCart);
+            
+        } catch (e) { <span class="cstat-no" title="statement not covered" >res.status(500).json(e); </span>}
+    }
+&nbsp;
+      static async checkOutCartReserveWithoutLogin(req: Request, res: Response) {
+        try {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if(!(req.body.firstName &amp;&amp; req.body.lastName &amp;&amp; req.body.email)) {
+<span class="cstat-no" title="statement not covered" >                return res.status(400).json({err: "firstName, lastName or email missing"});</span>
+            }
+            let cart = await Cart.findById(req.params.id);
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!cart) { <span class="cstat-no" title="statement not covered" >return res.status(400).json({ err: "Cart not found" }); </span>}
+            
+            //tickets get mapped to the predefined user for paying in the cinema
+            await Ticket.updateMany({ _id: { $in: cart.tickets } }, { "$set": { status: "reserved", user: req.body, userID: '617e82ba6f9ea500136f0976' } }, { "multi": true });
+&nbsp;
+            let cartUpdated = await Cart.findOneAndUpdate({ _id: req.params.id }, { tickets: [] }, { new: true });
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!cartUpdated) { <span class="cstat-no" title="statement not covered" >return res.status(400).json({ err: "Not found" }); </span>}
+&nbsp;
+            res.json(cartUpdated);
+&nbsp;
+            //send Mail
+            utils.sendReservationEmail(req.body.email, cart.tickets)
         } catch (e) { <span class="cstat-no" title="statement not covered" >res.status(500).json(e); </span>}
     }
 }</pre></td></tr></table></pre>
@@ -364,7 +436,7 @@ export default class cartController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Oct 18 2021 07:48:52 GMT+0000 (Coordinated Universal Time)
+                at Sun Oct 31 2021 12:13:51 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
